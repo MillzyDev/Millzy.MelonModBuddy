@@ -1,0 +1,18 @@
+<Project>
+    <ItemGroup>
+        <!-- Ensure the required properties are added to the compiler config -->
+        <CompilerVisibleProperty Include="ModInfoNamespace" />
+        <CompilerVisibleProperty Include="ModInfoClassName" />
+        
+        <CompilerVisibleProperty Include="ModName" />
+        <CompilerVisibleProperty Include="ModId" />
+        <CompilerVisibleProperty Include="ModAuthor" />
+        <CompilerVisibleProperty Include="ModVersion" />
+        
+        <!-- MelonLoader properties -->
+        <CompilerVisibleProperty Include="ModApplyMelonAttributes" />
+        <CompilerVisibleProperty Include="ModUseMelonId" />
+        <CompilerVisibleProperty Include="MelonGameDeveloper" />
+        <CompilerVisibleProperty Include="MelonGameName" />
+    </ItemGroup>
+</Project>  
