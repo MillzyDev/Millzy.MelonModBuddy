@@ -17,6 +17,15 @@
         <CompilerVisibleProperty Include="MelonGameName" />
     </ItemGroup>
     
+    <!-- Set default property values -->
+    <PropertyGroup>
+        <ModVersion Condition="'$(ModVersion)' == ''">0.1.0</ModVersion>
+        <ModId Condition="'$(ModAuthor)' == ''">$(ModAuthor).$(ModName)</ModId>
+        <ModIcon Condition="'$(ModIcon)' == ''">$(SolutionDir)\icon.png</ModIcon>
+        <ModReadme Condition="'$(ModReadme)' == ''">$(SoludtionDir)\README.md</ModReadme>
+        <ModChangelog Condition="'$(ModChangelog)' == ''">$(SolutionDir)\CHANGELOG.md</ModChangelog>
+    </PropertyGroup>
+    
     <!-- Copy To Mods Folder Target -->
     <Target Name="CopyToModsFolder"
             AfterTargets="PostBuildEvent"
