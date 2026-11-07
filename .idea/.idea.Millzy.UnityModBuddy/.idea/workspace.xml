@@ -8,11 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91018c38-61fd-4146-933a-168576803865" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Millzy.UnityModBuddy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Millzy.UnityModBuddy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.targets" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +92,7 @@
       <workItem from="1793977153467" duration="3195000" />
       <workItem from="1793982380844" duration="925000" />
       <workItem from="1794048760038" duration="5070000" />
-      <workItem from="1794068366269" duration="6878000" />
+      <workItem from="1794068366269" duration="8959000" />
     </task>
     <task id="LOCAL-00001" summary="big generator stuff :D">
       <option name="closed" value="true" />
@@ -153,7 +150,39 @@
       <option name="project" value="LOCAL" />
       <updated>1794071259214</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="readme">
+      <option name="closed" value="true" />
+      <created>1794076379895</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1794076379895</updated>
+    </task>
+    <task id="LOCAL-00009" summary="set default values">
+      <option name="closed" value="true" />
+      <created>1794076925756</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1794076925756</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor ModDependency to ModDependencies">
+      <option name="closed" value="true" />
+      <created>1794076945527</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1794076945527</updated>
+    </task>
+    <task id="LOCAL-00011" summary="set assembly version">
+      <option name="closed" value="true" />
+      <created>1794076952135</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1794076952135</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +197,11 @@
     <MESSAGE value="thunderstore staging" />
     <MESSAGE value="copy files to folder" />
     <MESSAGE value="rename porject" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename porject" />
+    <MESSAGE value="readme" />
+    <MESSAGE value="set default values" />
+    <MESSAGE value="refactor ModDependency to ModDependencies" />
+    <MESSAGE value="set assembly version" />
+    <option name="LAST_COMMIT_MESSAGE" value="set assembly version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

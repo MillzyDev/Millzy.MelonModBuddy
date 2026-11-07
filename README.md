@@ -32,8 +32,36 @@ MelonModBuddy relies on some MSBuild properties and item groups to be set.
 |-------------------|------------------------------------------------------------------------------------------|
 | `ModDependencies` | The dependency strings to include in the `dependencies` field in Thunderstore manifests. |
 
+### User-specific Properties
+Properties like `GamePath` are specific to the user and shoudln't be directly included in the project file. 
+I highly recommend using a `.csproj.user` file to define this property, as it's ignored in common .gitignore templates.
+
+1. Create a `{YourProjectName}.csproj.user` file in your projecy (i.e. it should be in the same directory) as your normal project file (`{YourProjectName}.csproj`).
+2. Then include it in the main `csproj` file by adding this:
+```xml
+    <ItemGroup>
+      <None Include="Millzy.MelonModBuddy.Tests.csproj.user" />
+    </ItemGroup> 
+```
+3. In the `.csproj.user` file, set the `GamePath` property like you would in your project file.
+```xml
+<Project>
+    <PropertyGroup>
+        <GamePath>C:\Path\To\The\Game\Install\Directory\</GamePath>
+        <!-- Any other user specific stuff can and should go in here too! -->
+    </PropertyGroup>
+</Project>
+```
+
+### Required Properties
+In general, `ModName`, `ModVersion`, and `ModAuthor` **MUST** be set, otherwise the source generator **WILL** throw errors.
+
+**If you set `ThunderstorePackage` to `true`:** You **MUST**:
+- Make sure `ModIcon` and `ModReadme` contain valid paths to files;
+- `ModName`, `ModVersion`, `ModWebsite`, and `ModDescription` are properly set and in the allowed formats.
+
 ### Example
-```csproj
+```xml
     <PropertyGroup>
         <ModName>TestModName</ModName>
         <ModVersion>0.6.0</ModVersion>
@@ -68,3 +96,34 @@ MelonModBuddy relies on some MSBuild properties and item groups to be set.
         <ThunderstorePackage>true</ThunderstorePackage>
     </PropertyGroup>
 ```
+
+With this configuration:
+- MelonLoader assembly-scoped attributes are automatically included in the build.
+```csharp
+// MelonAssemblyInfo.g.cs
+using System;
+using MelonLoader;
+using Millzy.MelonModBuddy.Tests;
+
+[assembly: MelonInfo(
+    typeof(Mod), 
+    Millzy.MelonModBuddy.Tests.ModInfo.Name,
+    Millzy.MelonModBuddy.Tests.ModInfo.Version,
+    Millzy.MelonModBuddy.Tests.ModInfo.Author
+)]
+[assembly: MelonID(Millzy.MelonModBuddy.Tests.ModInfo.Id)]
+[assembly: MelonGame("StressLevelZero", "BONELAB")]
+```
+- The following `ModInfo` class is generated:
+```csharp
+namespace Millzy.MelonModBuddy.Tests {
+    internal static class ModInfo {
+        public const string Name = "TestModName";
+        public const string Id = "Me.TestModName";
+        public const string Author = "Me";
+        public const string Version = "0.6.0";
+    }
+}
+```
+- The mod (and any xml and pdp files for it) are copied to the mods directory in both Debug and Release mode.
+- A Thunderstore package zip file is created in Release mode.
