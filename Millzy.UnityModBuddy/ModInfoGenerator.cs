@@ -27,36 +27,46 @@ namespace Millzy.UnityModBuddy
                 .Select((options, cancellationToken) =>
                 {
                     AnalyzerConfigOptions globalOptions = options.GlobalOptions;
-                    string rootNamespace = globalOptions.TryGetValue("build_property.RootNamespace", out string rootNamespaceProp)
+                    string rootNamespace = globalOptions.TryGetValue("build_property.RootNamespace", out string? rootNamespaceProp)
                         ? rootNamespaceProp
                         : "";
+                    
                     string modInfoNamespace =
-                        globalOptions.TryGetValue("build_property.ModInfoNamespace", out string modInfoNamespaceProp) && modInfoNamespaceProp != ""
+                        globalOptions.TryGetValue("build_property.ModInfoNamespace", out string? modInfoNamespaceProp) && modInfoNamespaceProp != ""
                             ? modInfoNamespaceProp
                             : rootNamespace;
+                    
                     string modInfoClassName =
-                        globalOptions.TryGetValue("build_property.ModInfoClassName", out string modInfoClassNameProp) && modInfoClassNameProp != ""
+                        globalOptions.TryGetValue("build_property.ModInfoClassName", out string? modInfoClassNameProp) && modInfoClassNameProp != ""
                             ? modInfoClassNameProp
                             : generatedClassName;
-                    globalOptions.TryGetValue("build_property.ModName", out string modName); // must be defined
-                    globalOptions.TryGetValue("build_property.ModAuthor", out string modAuthor); // must be defined
-                    globalOptions.TryGetValue("build_property.ModVersion", out string modVersion); // must be defined
+                    
+                    globalOptions.TryGetValue("build_property.ModName", out string? modName); // must be defined
+                    globalOptions.TryGetValue("build_property.ModAuthor", out string? modAuthor); // must be defined
+                    globalOptions.TryGetValue("build_property.ModVersion", out string? modVersion); // must be defined
+                    
                     string modId = 
-                        globalOptions.TryGetValue("build_property.ModId", out string modIdProp)
+                        globalOptions.TryGetValue("build_property.ModId", out string? modIdProp) && modIdProp != ""
                             ? modIdProp
                             : $"{modAuthor}.{modName}";
+                    
                     bool modApplyMelonAttributes =
                         globalOptions.TryGetValue("build_property.ModApplyMelonAttributes",
-                            out string modApplyMelonAttributesProp) && modApplyMelonAttributesProp.ToLower() == "true";
+                            out string? modApplyMelonAttributesProp) && modApplyMelonAttributesProp.ToLower() == "true";
+                    
                     bool modUseMelonId =
                         globalOptions.TryGetValue("build_property.ModUseMelonId",
-                            out string modUseMelonIdProp) && modUseMelonIdProp.ToLower() == "true";
-                    globalOptions.TryGetValue("build_property.ModClassName", out string modClassName);
-                    globalOptions.TryGetValue("build_property.MelonGameDeveloper", out string melonGameDeveloper);
-                    globalOptions.TryGetValue("build_property.MelonGameName", out string melonGameName);
+                            out string? modUseMelonIdProp) && modUseMelonIdProp.ToLower() == "true";
+                    
+                    string modClassName = globalOptions.TryGetValue("build_property.ModClassName", out string? modClassNameProp) && modIdProp != ""
+                            ? modClassNameProp : "Mod";
+                    globalOptions.TryGetValue("build_property.MelonGameDeveloper", out string? melonGameDeveloper);
+                    globalOptions.TryGetValue("build_property.MelonGameName", out string? melonGameName);
 
                     return new GeneratorProperties
                     {
+                        RootNamespace = rootNamespace,
+                        
                         ModInfoNamespace = modInfoNamespace,
                         ModInfoClassName = modInfoClassName,
 
@@ -117,6 +127,50 @@ namespace Millzy.UnityModBuddy
                                   """;
                 
                 spc.AddSource($"{generatorProperties.ModInfoClassName}.g.cs", source);
+            });
+            
+            context.RegisterSourceOutput(generatorPropertiesProvider, (spc, generatorProperties) =>
+            {
+                if (!generatorProperties.ApplyMelonAttributes)
+                {
+                    return;
+                }
+
+                string usings = $"""
+                                  using System;
+                                  using MelonLoader;
+                                  using {generatorProperties.RootNamespace};
+                                  """;
+
+                string melonMod = $"""
+                                   [assembly: MelonInfo(
+                                       typeof({generatorProperties.ModClassName}), 
+                                       {generatorProperties.ModInfoNamespace}.{generatorProperties.ModInfoClassName}.Name,
+                                       {generatorProperties.ModInfoNamespace}.{generatorProperties.ModInfoClassName}.Version,
+                                       {generatorProperties.ModInfoNamespace}.{generatorProperties.ModInfoClassName}.Author
+                                   )]
+                                   """;
+
+                string melonId = !generatorProperties.UseMelonId 
+                    ? "" : $"[assembly: MelonID({generatorProperties.ModInfoNamespace}.{generatorProperties.ModInfoClassName}.Id)]";
+
+                string melonGameDeveloper =
+                    generatorProperties.MelonGameDeveloper is null or "" ||
+                    generatorProperties.MelonGameName is null or ""
+                        ? ""
+                        : $"""
+                           [assembly: MelonGame("{generatorProperties.MelonGameDeveloper}", "{generatorProperties.MelonGameName}")]
+                           """;
+
+                string source = $"""
+                                 {usings}
+                                 
+                                 {melonMod}
+                                 {melonId}
+                                 {melonGameDeveloper}
+                                 """;
+                
+                spc.AddSource("MelonAssemblyInfo.g.cs", source);
             });
         }
     }

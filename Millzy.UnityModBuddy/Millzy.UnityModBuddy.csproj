@@ -4,10 +4,7 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         
-        <ModName>AAAAA</ModName>
-        
         <LangVersion>11</LangVersion>
-        
         <Nullable>enable</Nullable>
     </PropertyGroup>
 

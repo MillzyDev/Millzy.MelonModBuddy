@@ -1,4 +1,6 @@
-﻿namespace Millzy.UnityModBuddy.Tests;
+﻿using MelonLoader;
+
+namespace Millzy.UnityModBuddy.Tests;
 
 class Program
 {

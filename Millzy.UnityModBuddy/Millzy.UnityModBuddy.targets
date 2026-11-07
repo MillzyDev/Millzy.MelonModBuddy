@@ -10,6 +10,7 @@
         <CompilerVisibleProperty Include="ModVersion" />
         
         <!-- MelonLoader properties -->
+        <CompilerVisibleProperty Include="ModClassName" />
         <CompilerVisibleProperty Include="ModApplyMelonAttributes" />
         <CompilerVisibleProperty Include="ModUseMelonId" />
         <CompilerVisibleProperty Include="MelonGameDeveloper" />
