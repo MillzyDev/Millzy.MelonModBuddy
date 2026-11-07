@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Millzy.MelonModBuddy.Tests\Millzy.MelonModBuddy.Tests.csproj" />
+  <Project Path="Millzy.MelonModBuddy\Millzy.MelonModBuddy.csproj" />
+</Solution>

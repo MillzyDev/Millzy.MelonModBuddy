@@ -1,4 +1,4 @@
-namespace Millzy.UnityModBuddy
+namespace Millzy.MelonModBuddy
 {
     public struct GeneratorProperties
     {

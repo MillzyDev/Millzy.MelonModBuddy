@@ -14,7 +14,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <None Include="Millzy.UnityModBuddy.targets" Pack="true" PackagePath="build\;buildTransitive\" />
+        <None Include="Millzy.MelonModBuddy.targets" Pack="true" PackagePath="build\;buildTransitive\" />
     </ItemGroup>
 
     <ItemGroup>

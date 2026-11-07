@@ -1,6 +1,6 @@
 ﻿using MelonLoader;
 
-namespace Millzy.UnityModBuddy.Tests;
+namespace Millzy.MelonModBuddy.Tests;
 
 class Program
 {

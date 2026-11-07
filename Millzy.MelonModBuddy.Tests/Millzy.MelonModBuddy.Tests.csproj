@@ -44,9 +44,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Millzy.UnityModBuddy\Millzy.UnityModBuddy.csproj" 
-                        OutputItemType="Analyzer"
-                        ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\Millzy.MelonModBuddy\Millzy.MelonModBuddy.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
@@ -54,9 +52,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="Millzy.UnityModBuddy.Tests.csproj.user" />
+      <None Include="Millzy.MelonModBuddy.Tests.csproj.user" />
     </ItemGroup>
     
-    <Import Project="..\Millzy.UnityModBuddy\Millzy.UnityModBuddy.targets" />
+    <Import Project="..\Millzy.UnityModBuddy\Millzy.MelonModBuddy.targets" />
     
 </Project>

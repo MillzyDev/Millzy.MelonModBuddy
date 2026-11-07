@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace Millzy.UnityModBuddy
+namespace Millzy.MelonModBuddy
 {
     [Generator]
     public sealed class BuddySourceGenerator : IIncrementalGenerator
