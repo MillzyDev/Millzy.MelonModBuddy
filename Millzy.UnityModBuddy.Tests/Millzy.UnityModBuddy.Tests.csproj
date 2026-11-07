@@ -52,6 +52,10 @@
     <ItemGroup>
       <PackageReference Include="LavaGang.MelonLoader" Version="0.7.3" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Millzy.UnityModBuddy.Tests.csproj.user" />
+    </ItemGroup>
     
     <Import Project="..\Millzy.UnityModBuddy\Millzy.UnityModBuddy.targets" />
     

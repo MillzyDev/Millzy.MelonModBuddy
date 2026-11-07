@@ -17,6 +17,37 @@
         <CompilerVisibleProperty Include="MelonGameName" />
     </ItemGroup>
     
+    <!-- Copy To Mods Folder Target -->
+    <Target Name="CopyToModsFolder"
+            AfterTargets="PostBuildEvent"
+            Condition="'$(CopyToModsFolder)' == 'true'">
+        
+        <Error Text="Provided game install location doesn't exist. Make sure GamePath is properly defined."
+                 Condition="!Exists('$(GamePath)') or '$(GamePath)' == ''" />
+
+        <PropertyGroup>
+            <ModsPath>$(GamePath)\Mods</ModsPath>
+        </PropertyGroup>
+        
+        <Warning Text="Provided game installation doesn't have a mods folder. This could indicate the path is wrong. Will copy to location anyway."
+                 Condition="!Exists('$(GamePath)\Mods')" />
+        
+        <MakeDir Directories="$(ModsPath)"
+                 Condition="!Exists('$(ModsPath)'" />
+        
+        <ItemGroup>
+            <ModFiles Include="$(OutputPath)\$(AssemblyName).dll" />
+            <ModFiles Include="$(OutputPath)\$(AssemblyName).pdb"
+                      Condition="Exists('$(OutputPath)\$(AssemblyName).pdb')" />
+            <ModFiles Include="$(OutputPath)\$(AssemblyName).xml"
+                      Condition="Exists('$(OutputPath)\$(AssemblyName).xml')" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(ModFiles)"
+              DestinationFolder="$(ModsPath)"
+              SkipUnchangedFiles="true" />  
+    </Target>
+    
     <!-- Thunderstore Package Target -->
     <Target Name="CreateThunderstorePackage" 
             AfterTargets="PostBuildEvent" 
@@ -33,6 +64,11 @@
             <ThunderstoreFiles Include="$(ModChangelog)" 
                                Condition="Exists('$(ModChangelog)')" />
             
+            <ThunderstoreFilesDestination Include="$(ThunderstorePath)\icon.png" />
+            <ThunderstoreFilesDestination Include="$(ThunderstorePath)\README.md" />
+            <ThunderstoreFilesDestination Include="$(ThunderstorePath)\CHANGELOG.md"
+                                          Condition="Exists('$(ModChangelog)')" />
+            
             <ModFiles Include="$(OutputPath)\$(AssemblyName).dll" />
             <ModFiles Include="$(OutputPath)\$(AssemblyName).pdb" 
                       Condition="Exists('$(OutputPath)\$(AssemblyName).pdb')" />
@@ -46,7 +82,7 @@
         <MakeDir Directories="$(ThunderstorePath)" />
         <MakeDir Directories="$(ThunderstoreModsPath)" />
         <Copy SourceFiles="@(ThunderstoreFiles)" 
-              DestinationFolder="$(ThunderstorePath)" />
+              DestinationFiles="@(ThunderstoreFilesDestination)" />
         <Copy SourceFiles="@(ModFiles)" 
               DestinationFolder="$(ThunderstoreModsPath)" />
         
