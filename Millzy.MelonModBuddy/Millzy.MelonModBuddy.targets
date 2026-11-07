@@ -33,7 +33,7 @@
                  Condition="!Exists('$(GamePath)\Mods')" />
         
         <MakeDir Directories="$(ModsPath)"
-                 Condition="!Exists('$(ModsPath)'" />
+                 Condition="!Exists('$(ModsPath)')" />
         
         <ItemGroup>
             <ModFiles Include="$(OutputPath)\$(AssemblyName).dll" />

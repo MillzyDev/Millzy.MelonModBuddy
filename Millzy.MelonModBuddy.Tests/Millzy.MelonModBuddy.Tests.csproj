@@ -11,7 +11,7 @@
 
     <PropertyGroup>
         <ModName>TestModName</ModName>
-        <ModVersion>0.6.7</ModVersion>
+        <ModVersion>0.6.0</ModVersion>
         <ModAuthor>Me</ModAuthor>
         <ModWebsite>https://example.com</ModWebsite>
         <ModDescription>My cool mod</ModDescription>
@@ -35,7 +35,7 @@
     
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <CopyToModsFolder>true</CopyToModsFolder>
-        <ThunderstorePackage>true</ThunderstorePackage>
+        <ThunderstorePackage>false</ThunderstorePackage>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
@@ -55,6 +55,6 @@
       <None Include="Millzy.MelonModBuddy.Tests.csproj.user" />
     </ItemGroup>
     
-    <Import Project="..\Millzy.UnityModBuddy\Millzy.MelonModBuddy.targets" />
+    <Import Project="..\Millzy.MelonModBuddy\Millzy.MelonModBuddy.targets" />
     
 </Project>

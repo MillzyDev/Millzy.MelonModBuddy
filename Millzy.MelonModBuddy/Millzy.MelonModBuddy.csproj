@@ -3,9 +3,12 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-        
         <LangVersion>11</LangVersion>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>MelonModBuddy</Title>
+        <Authors>Millzy</Authors>
+        <Copyright>Copyright (c) 2026 Millzy</Copyright>
     </PropertyGroup>
 
     <ItemGroup>

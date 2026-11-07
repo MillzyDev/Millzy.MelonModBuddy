@@ -8,8 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91018c38-61fd-4146-933a-168576803865" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Millzy.UnityModBuddy.Tests/Millzy.UnityModBuddy.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.UnityModBuddy.Tests/Millzy.UnityModBuddy.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Millzy.UnityModBuddy/Millzy.UnityModBuddy.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.UnityModBuddy/Millzy.UnityModBuddy.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Millzy.UnityModBuddy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Millzy.UnityModBuddy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy.Tests/Millzy.MelonModBuddy.Tests.csproj.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +95,7 @@
       <workItem from="1793977153467" duration="3195000" />
       <workItem from="1793982380844" duration="925000" />
       <workItem from="1794048760038" duration="5070000" />
-      <workItem from="1794068366269" duration="2585000" />
+      <workItem from="1794068366269" duration="6878000" />
     </task>
     <task id="LOCAL-00001" summary="big generator stuff :D">
       <option name="closed" value="true" />
@@ -117,7 +121,39 @@
       <option name="project" value="LOCAL" />
       <updated>1794053614728</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="copy files to folder">
+      <option name="closed" value="true" />
+      <created>1794071070863</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1794071070863</updated>
+    </task>
+    <task id="LOCAL-00005" summary="rename porject">
+      <option name="closed" value="true" />
+      <created>1794071195123</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1794071195123</updated>
+    </task>
+    <task id="LOCAL-00006" summary="rename porject">
+      <option name="closed" value="true" />
+      <created>1794071204150</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1794071204150</updated>
+    </task>
+    <task id="LOCAL-00007" summary="rename porject">
+      <option name="closed" value="true" />
+      <created>1794071259214</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1794071259214</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,7 +166,9 @@
     <MESSAGE value="big generator stuff :D" />
     <MESSAGE value="attribute generation" />
     <MESSAGE value="thunderstore staging" />
-    <option name="LAST_COMMIT_MESSAGE" value="thunderstore staging" />
+    <MESSAGE value="copy files to folder" />
+    <MESSAGE value="rename porject" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename porject" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
