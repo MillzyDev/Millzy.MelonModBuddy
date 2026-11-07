@@ -16,4 +16,66 @@
         <CompilerVisibleProperty Include="MelonGameDeveloper" />
         <CompilerVisibleProperty Include="MelonGameName" />
     </ItemGroup>
+    
+    <!-- Thunderstore Package Target -->
+    <Target Name="CreateThunderstorePackage" 
+            AfterTargets="PostBuildEvent" 
+            Condition="'$(ThunderstorePackage)' == 'true'">
+        <PropertyGroup>
+            <ThunderstorePath>$(OutputPath)\Thunderstore</ThunderstorePath>
+            <ThunderstoreModsPath>$(ThunderstorePath)\Mods</ThunderstoreModsPath>
+        </PropertyGroup>
+        
+        <!-- Get list of files to include in the ZIP -->
+        <ItemGroup>
+            <ThunderstoreFiles Include="$(ModIcon)" />
+            <ThunderstoreFiles Include="$(ModReadme)" />
+            <ThunderstoreFiles Include="$(ModChangelog)" 
+                               Condition="Exists('$(ModChangelog)')" />
+            
+            <ModFiles Include="$(OutputPath)\$(AssemblyName).dll" />
+            <ModFiles Include="$(OutputPath)\$(AssemblyName).pdb" 
+                      Condition="Exists('$(OutputPath)\$(AssemblyName).pdb')" />
+            <ModFiles Include="$(OutputPath)\$(AssemblyName).xml" 
+                      Condition="Exists('$(OutputPath)\$(AssemblyName).xml')" />
+        </ItemGroup>
+
+        <Message Importance="high" Text="Staging Thunderstore files" /> 
+        
+        <!-- Copy files to output directory into a folder for Thunderstore items -->
+        <MakeDir Directories="$(ThunderstorePath)" />
+        <MakeDir Directories="$(ThunderstoreModsPath)" />
+        <Copy SourceFiles="@(ThunderstoreFiles)" 
+              DestinationFolder="$(ThunderstorePath)" />
+        <Copy SourceFiles="@(ModFiles)" 
+              DestinationFolder="$(ThunderstoreModsPath)" />
+        
+        <Message Importance="high" Text="Creating manifest.json" />
+        
+        <!-- Create manifest.json -->
+        <PropertyGroup>
+            <ManifestJsonContent>
+{
+    "name": "$(ModName)",
+    "description": "$(ModDescription)",
+    "version_number": "$(ModVersion)",
+    "website_url": "$(ModWebsite)",
+    "dependencies": [
+        "@(ModDependency -> '%(Identity)', '",%0A        "')"           
+    ]
+}
+            </ManifestJsonContent>
+        </PropertyGroup>
+        
+        <WriteLinesToFile File="$(ThunderstorePath)\manifest.json"
+                          Lines="$(ManifestJsonContent)"
+                          Overwrite="true"
+                          WriteOnlyWhenDifferent="true" />
+        
+        <Message Importance="high" Text="Building Thunderstore package" />
+        
+        <ZipDirectory DestinationFile="$(OutputPath)\$(ModName)-$(ModVersion).zip" 
+                      SourceDirectory="$(ThunderstorePath)"
+                      Overwrite="true" />
+    </Target>
 </Project>  

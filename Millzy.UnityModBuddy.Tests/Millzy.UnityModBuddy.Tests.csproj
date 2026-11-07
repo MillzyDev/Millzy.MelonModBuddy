@@ -20,13 +20,28 @@
         <ModUseMelonId>true</ModUseMelonId>
         <MelonGameDeveloper>StressLevelZero</MelonGameDeveloper>
         <MelonGameName>BONELAB</MelonGameName>
+        
+        <ModIcon>$(SolutionDir)/CHANGELOG.md</ModIcon>
+        <ModReadme>$(SolutionDir)/README.md</ModReadme>
+        <!-- \/ Optional \/ -->
+        <ModChangelog>PATH TO CHANGELOG</ModChangelog>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <ModDependency Include="Author-TestDependency1-1.0.0" />
         <ModDependency Include="Author-TestDependency2-1.0.0" />
         <ModDependency Include="Author-TestDependency3-1.0.0" />
     </ItemGroup>
+    
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <CopyToModsFolder>true</CopyToModsFolder>
+        <ThunderstorePackage>true</ThunderstorePackage>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <CopyToModsFolder>true</CopyToModsFolder>
+        <ThunderstorePackage>true</ThunderstorePackage>
+    </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Millzy.UnityModBuddy\Millzy.UnityModBuddy.csproj" 

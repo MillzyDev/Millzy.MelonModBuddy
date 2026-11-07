@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Millzy.UnityModBuddy
 {
     [Generator]
-    public sealed class ModInfoGenerator : IIncrementalGenerator
+    public sealed class BuddySourceGenerator : IIncrementalGenerator
     {
         private const string generatedClassName = "ModInfo";
 
