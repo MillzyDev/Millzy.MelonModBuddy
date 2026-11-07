@@ -106,7 +106,7 @@
     "version_number": "$(ModVersion)",
     "website_url": "$(ModWebsite)",
     "dependencies": [
-        "@(ModDependency -> '%(Identity)', '",%0A        "')"           
+        "@(ModDependencies -> '%(Identity)', '",%0A        "')"           
     ]
 }
             </ManifestJsonContent>

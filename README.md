@@ -53,9 +53,9 @@ MelonModBuddy relies on some MSBuild properties and item groups to be set.
     </PropertyGroup>
 
     <ItemGroup>
-        <ModDependency Include="Author-TestDependency1-1.0.0" />
-        <ModDependency Include="Author-TestDependency2-1.0.0" />
-        <ModDependency Include="Author-TestDependency3-1.0.0" />
+        <ModDependencies Include="Author-TestDependency1-1.0.0" />
+        <ModDependencies Include="Author-TestDependency2-1.0.0" />
+        <ModDependencies Include="Author-TestDependency3-1.0.0" />
     </ItemGroup>
     
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
