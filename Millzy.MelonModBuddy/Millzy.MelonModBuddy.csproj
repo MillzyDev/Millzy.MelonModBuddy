@@ -9,6 +9,8 @@
         <Title>MelonModBuddy</Title>
         <Authors>Millzy</Authors>
         <Copyright>Copyright (c) 2026 Millzy</Copyright>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
