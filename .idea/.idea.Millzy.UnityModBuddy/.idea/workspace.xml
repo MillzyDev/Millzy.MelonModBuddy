@@ -8,9 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91018c38-61fd-4146-933a-168576803865" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Millzy.UnityModBuddy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Millzy.UnityModBuddy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Millzy.MelonModBuddy/Millzy.MelonModBuddy.targets" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,7 @@
       <workItem from="1793977153467" duration="3195000" />
       <workItem from="1793982380844" duration="925000" />
       <workItem from="1794048760038" duration="5070000" />
-      <workItem from="1794068366269" duration="8959000" />
+      <workItem from="1794068366269" duration="12590000" />
     </task>
     <task id="LOCAL-00001" summary="big generator stuff :D">
       <option name="closed" value="true" />
@@ -182,7 +181,23 @@
       <option name="project" value="LOCAL" />
       <updated>1794076952135</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="better gitignore">
+      <option name="closed" value="true" />
+      <created>1794078533309</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1794078533309</updated>
+    </task>
+    <task id="LOCAL-00013" summary="README">
+      <option name="closed" value="true" />
+      <created>1794078540141</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1794078540141</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +205,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="big generator stuff :D" />
@@ -201,7 +227,9 @@
     <MESSAGE value="set default values" />
     <MESSAGE value="refactor ModDependency to ModDependencies" />
     <MESSAGE value="set assembly version" />
-    <option name="LAST_COMMIT_MESSAGE" value="set assembly version" />
+    <MESSAGE value="better gitignore" />
+    <MESSAGE value="README" />
+    <option name="LAST_COMMIT_MESSAGE" value="README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

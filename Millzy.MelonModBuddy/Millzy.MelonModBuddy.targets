@@ -63,6 +63,21 @@
               SkipUnchangedFiles="true" />  
     </Target>
     
+    <!-- Install on Android/Quest devices -->
+    <Target Name="AdbPushToModsFolder"
+            AfterTargets="PostBuildEvent"
+            Condition="'$(AdbPushToModsFolder)' == 'true'">
+        <PropertyGroup>
+            <AndroidDestination>/sdcard/MelonLoader/$(AndroidGamePackageName)/Mods</AndroidDestination>
+        </PropertyGroup>
+        
+        <Exec Command="adb push '$(OutputPath)/$(AssemblyName).dll' '$(AndroidDestination)/$(AssemblyName).dll'"
+              EchoOff="true" />
+        <Exec Command="adb push '$(OutputPath)/$(AssemblyName).pdb' '$(AndroidDestination)/$(AssemblyName).pdb'"
+              EchoOff="true"
+              Condition="Exists('$(OutputPath)\$(AssemblyName).pdb')"/>
+    </Target>
+    
     <!-- Thunderstore Package Target -->
     <Target Name="CreateThunderstorePackage" 
             AfterTargets="PostBuildEvent" 
