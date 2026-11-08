@@ -1,4 +1,10 @@
 <Project>
+    <ItemDefinitionGroup>
+        <ModDependencies>
+            <Visible>false</Visible>
+        </ModDependencies>
+    </ItemDefinitionGroup>
+    
     <ItemGroup>
         <!-- Ensure the required properties are added to the compiler config -->
         <CompilerVisibleProperty Include="ModInfoNamespace" />
