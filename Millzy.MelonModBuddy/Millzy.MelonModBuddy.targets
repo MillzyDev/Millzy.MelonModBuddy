@@ -119,9 +119,9 @@
         <Error Text="ModDescription can be no more than 250 characters long."
                Condition="$(ModDescription.Length) &gt; 250" />
 
-        <Error Text="README.md file does not exist. Create one in $(SolutionDir) or update ModReadme"
+        <Error Text="README.md file does not exist. Create one in $(SolutionDir) or update ModReadme."
                Condition="Exists('$(ModReadme)')" />
-        <Error Text="icon.png file does not exist. Create one in $(SolutionDir) or update ModIcon"
+        <Error Text="icon.png file does not exist. Create one in $(SolutionDir) or update ModIcon."
                Condition="Exists('$(ModIcon)')" />
 
         <CheckForBOM Filepath="$(ModReadme)">
