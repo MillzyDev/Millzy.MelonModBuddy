@@ -120,9 +120,9 @@
                Condition="$(ModDescription.Length) &gt; 250" />
 
         <Error Text="README.md file does not exist. Create one in $(SolutionDir) or update ModReadme."
-               Condition="Exists('$(ModReadme)')" />
+               Condition="!Exists('$(ModReadme)')" />
         <Error Text="icon.png file does not exist. Create one in $(SolutionDir) or update ModIcon."
-               Condition="Exists('$(ModIcon)')" />
+               Condition="!Exists('$(ModIcon)')" />
 
         <CheckForBOM Filepath="$(ModReadme)">
             <Output TaskParameter="Result" PropertyName="ModReadmeHasBom" />
