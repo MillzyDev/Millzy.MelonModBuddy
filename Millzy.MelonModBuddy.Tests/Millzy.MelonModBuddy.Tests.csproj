@@ -7,6 +7,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU;Android</Platforms>
     </PropertyGroup>
 
     <PropertyGroup>
