@@ -17,7 +17,7 @@
         <RepositoryUrl>https://github.com/MillzyDev/MelonModBuddy.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/MillzyDev/MelonModBuddy</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/MillzyDev/MelonModBuddy/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -40,5 +40,10 @@
     <ItemGroup>
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true"
               PackagePath="analyzers/dotnet/cs" Visible="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+      <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
     </ItemGroup>
 </Project>
