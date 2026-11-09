@@ -8,9 +8,6 @@ MSBuild utilities for MelonLoader mod projects.
 - Thunderstore package generation
 
 ## Usage Guide
-### Installation
-TODO
-
 ### Mod Metadata Class Generation
 This generates a static class containing constant values holding the name, author, version, and ID of your mod. 
 It's intended to be used for any metadata-consuming attributes such as `MelonInfo` and `MelonId`, for example:
@@ -173,10 +170,10 @@ errors.
         <MelonGameDeveloper>StressLevelZero</MelonGameDeveloper>
         <MelonGameName>BONELAB</MelonGameName>
         
-        <ModIcon>$(SolutionDir)/CHANGELOG.md</ModIcon>
+        <ModIcon>$(SolutionDir)/icon.png</ModIcon>
         <ModReadme>$(SolutionDir)/README.md</ModReadme>
         <!-- \/ Optional \/ -->
-        <ModChangelog>PATH TO CHANGELOG</ModChangelog>
+        <ModChangelog>$(SolutionDir)/CHANGELOG.md</ModChangelog>
     </PropertyGroup>
 
     <ItemGroup>
@@ -187,7 +184,6 @@ errors.
     
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <CopyToModsFolder>true</CopyToModsFolder>
-        <ThunderstorePackage>false</ThunderstorePackage>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
