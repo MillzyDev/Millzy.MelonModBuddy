@@ -1,4 +1,4 @@
-﻿# MelonModBuddy
+# MelonModBuddy
 MSBuild utilities for MelonLoader mod projects.
 
 ## Features
