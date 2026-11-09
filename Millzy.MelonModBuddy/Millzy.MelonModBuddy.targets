@@ -23,6 +23,56 @@
         <CompilerVisibleProperty Include="MelonGameName" />
     </ItemGroup>
     
+    <!-- Utility task to check file bytes -->
+    <UsingTask TaskName="CheckForBOM"
+               TaskFactory="RoslynCodeTaskFactory"
+               AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" >
+        <ParameterGroup>
+            <Filepath ParameterType="System.String" Required="true" />
+            <Result ParameterType="System.Boolean" Output="true" />
+        </ParameterGroup>
+        
+        <Task>
+            <Using Namespace="System.IO" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                    Result = false;
+                    
+                    if (File.Exists(Filepath)) 
+                    {
+                        using (FileStream fs = File.OpenRead(Filepath))
+                        {
+                            byte[] bytes = new byte[4];
+                            int read = fs.Read(bytes, 0, 4);
+                            
+                            // UTF-8 BOM
+                            if (read >= 3) 
+                            {
+                                Result = Result || (bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF);
+                            }
+                            
+                            // UTF-16 BOM
+                            if (read >= 2)
+                            {
+                                Result = Result 
+                                    || (bytes[0] == 0xFE && bytes[1] == 0xFF)
+                                    || (bytes[0] == 0xFF && bytes[1] == 0xFE);
+                            }
+                            
+                            // UTF-32 BOM
+                            if (read >= 4)
+                            {
+                                Result = Result
+                                    || (bytes[0] == 0x00 && bytes[1] == 0x00 && bytes[2] == 0xFE && bytes[3] == 0xFF)
+                                    || (bytes[0] == 0xFF && bytes[1] == 0xFE && bytes[2] == 0x00 && bytes[3] == 0x00);
+                            }
+                        }
+                    }
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+    
     <!-- Set default property values -->
     <PropertyGroup>
         <ModVersion Condition="'$(ModVersion)' == ''">0.1.0</ModVersion>
@@ -32,11 +82,24 @@
         <ModChangelog Condition="'$(ModChangelog)' == ''">$(SolutionDir)\CHANGELOG.md</ModChangelog>
     </PropertyGroup>
     
-    <Target Name="ValidateInputs"
+    <Target Name="ValidateThunderstoreFiles"
             AfterTargets="BeforeBuild" >
-        
+
         <Error Text="ModName can only contain characters a-z, A-Z, 0-9, and _"
                Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(ModName)', '^[a-zA-Z0-9_]+%24'))" />
+        
+        <CheckForBOM Filepath="$(ModReadme)">
+            <Output TaskParameter="Result" PropertyName="ModReadmeHasBom" />
+        </CheckForBOM>
+        <CheckForBOM Filepath="$(ModChangelog)">
+            <Output TaskParameter="Result" PropertyName="ModChangelogHasBom" />
+        </CheckForBOM>
+        
+        <Error Text="Supplied README file has a BOM (Byte order mark), which is forbidden"
+               Condition="$(ModReadmeHasBom)" />
+        <Error Text="Supplied CHANGELOG file has a BOM (Byte order mark), which is forbidden"
+               Condition="$(ModChangelogHasBom)" />
+        
     </Target>
     
     <!-- Copy To Mods Folder Target -->
