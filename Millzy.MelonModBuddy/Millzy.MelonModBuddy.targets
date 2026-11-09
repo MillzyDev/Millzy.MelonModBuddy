@@ -32,6 +32,13 @@
         <ModChangelog Condition="'$(ModChangelog)' == ''">$(SolutionDir)\CHANGELOG.md</ModChangelog>
     </PropertyGroup>
     
+    <Target Name="ValidateInputs"
+            AfterTargets="BeforeBuild" >
+        
+        <Error Text="ModName can only contain characters a-z, A-Z, 0-9, and _"
+               Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(ModName)', '^[a-zA-Z0-9_]+%24'))" />
+    </Target>
+    
     <!-- Copy To Mods Folder Target -->
     <Target Name="CopyToModsFolder"
             AfterTargets="PostBuildEvent"
