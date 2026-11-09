@@ -27,7 +27,7 @@ namespace Millzy.MelonModBuddy
         private static readonly DiagnosticDescriptor MissingRequiredPropertyError = new DiagnosticDescriptor(
             id: "UMB001",
             title: "Missing Required Property",
-            messageFormat: "The required MSBuild property {0} is not defined.",
+            messageFormat: "The required MSBuild property {0} is not defined",
             category: "Design",
             defaultSeverity: DiagnosticSeverity.Error,
             isEnabledByDefault: true
