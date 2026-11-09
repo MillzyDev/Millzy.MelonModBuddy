@@ -39,7 +39,7 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="[4.0.1,)" PrivateAssets="all" />
       <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="[4.0.1,)" PrivateAssets="all" />
-      <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+      <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.403" PrivateAssets="All" />
     </ItemGroup>
     
 
