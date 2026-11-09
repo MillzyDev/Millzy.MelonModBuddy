@@ -5,6 +5,8 @@ on:
     types: [published]
     
   workflow_dispatch: 
+    version:
+      required: true
         
 jobs:
   deploy:
@@ -30,8 +32,9 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Dotnet Pack
+  
         run: |
-          VERSION=${{ github.event.release.tag_name }}
+          VERSION=${{ github.event.release.tag_name || inputs.version }}
           VERSION=${VERSION#v}
           dotnet pack --configuration Release --no-build --no-build -p:PackageVersion=$VERSION --output ./dist
 
