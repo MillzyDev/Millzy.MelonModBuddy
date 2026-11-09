@@ -16,6 +16,8 @@
         <Description>MSBuild utilities for MelonLoader mod projects.</Description>
         <RepositoryUrl>https://github.com/MillzyDev/MelonModBuddy.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageProjectUrl>https://github.com/MillzyDev/MelonModBuddy</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/MillzyDev/MelonModBuddy/blob/master/LICENSE</PackageLicenseUrl>
     </PropertyGroup>
     
     <PropertyGroup>
