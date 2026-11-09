@@ -1,0 +1,115 @@
+name: Publish Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Dotnet Restore
+        run: dotnet restore
+
+      - name: Dotnet Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Dotnet Pack
+        run: |
+          VERSION=${{ github.event.release.tag_name }}
+          VERSION=${VERSION#v}
+          dotnet pack --configuration Release --no-build --no-build -p:PackageVersion=$VERSION --output ./artefacts
+          
+      - name: Upload Artefact
+        uses: actions/upload-artifact@v7
+        with: 
+          name: 'nuget-package'
+          path: ./artefacts/*.nupkg
+
+  publish-nuget:
+    name: Publish NuGet Package
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+          
+      - name: Download Artefact
+        uses: actions/download-artifact@v8
+        with: 
+          name: nuget-package
+          path: ./artefacts
+          
+      - name: Authenticate with NuGet
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: MillzyDev
+
+      - name: Dotnet NuGet Push
+        run: dotnet nuget push "./dist/*.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+  
+  publish-github:
+    name: Publish GitHub Package
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      packages: write
+      
+    steps:
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+          
+      - name: Download Artefact
+        uses: actions/download-artifact@v8
+        with:
+          name: nuget-package
+          path: ./artefacts
+          
+      - name: Configure GitHub Packages Authentication
+        run: dotnet nuget add source --name "GitHubPackages" "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text
+        
+      - name: Dotnet NuGet Push
+        run: dotnet nuget push "./artefacts/*.nupkg" --source "GitHubPackages" --api-key "${{ secrets.GITHUB_TOKEN }}" --skip-duplicate
+    
+  upload-release:
+    name: Upload to GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Download Artefact
+        uses: actions/download-artifact@v8
+        with:
+          name: nuget-package
+          path: ./artefacts
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: ./dist/*.nupkg
+          tag_name: ${{ github.event.release.tag_name || inputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
