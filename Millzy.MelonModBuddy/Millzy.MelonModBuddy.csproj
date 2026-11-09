@@ -14,6 +14,8 @@
         <Configurations>Debug;Release</Configurations>
         <Platforms>AnyCPU;Android</Platforms>
         <Description>MSBuild utilities for MelonLoader mod projects.</Description>
+        <RepositoryUrl>https://github.com/MillzyDev/MelonModBuddy.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
     
     <PropertyGroup>
