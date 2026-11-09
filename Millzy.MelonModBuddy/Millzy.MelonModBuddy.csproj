@@ -18,6 +18,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/MillzyDev/MelonModBuddy</PackageProjectUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <EnablePackageValidation>true</EnablePackageValidation>
     </PropertyGroup>
     
     <PropertyGroup>
