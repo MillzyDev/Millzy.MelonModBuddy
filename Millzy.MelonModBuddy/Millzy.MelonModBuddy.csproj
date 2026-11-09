@@ -14,10 +14,10 @@
         <Configurations>Debug;Release</Configurations>
         <Platforms>AnyCPU;Android</Platforms>
         <Description>MSBuild utilities for MelonLoader mod projects.</Description>
-        <RepositoryUrl>https://github.com/MillzyDev/MelonModBuddy.git</RepositoryUrl>
+        <RepositoryUrl>https://github.com/MillzyDev/Millzy.MelonModBuddy.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <PackageProjectUrl>https://github.com/MillzyDev/MelonModBuddy</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/MillzyDev/Millzy.MelonModBuddy</PackageProjectUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <EnablePackageValidation>true</EnablePackageValidation>
     </PropertyGroup>
