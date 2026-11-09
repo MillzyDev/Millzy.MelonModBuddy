@@ -3,6 +3,12 @@ name: Publish Package
 on:
   release:
     types: [published]
+    
+  workflow_dispatch: 
+    inputs: 
+      version:
+        required: true
+        type: string
 
 jobs:
   build:
@@ -28,7 +34,7 @@ jobs:
 
       - name: Dotnet Pack
         run: |
-          VERSION=${{ github.event.release.tag_name }}
+          VERSION=${{ github.event.release.tag_name || inputs.version }}
           VERSION=${VERSION#v}
           dotnet pack --configuration Release --no-build --no-build -p:PackageVersion=$VERSION --output ./artefacts
           
@@ -65,7 +71,7 @@ jobs:
           user: MillzyDev
 
       - name: Dotnet NuGet Push
-        run: dotnet nuget push "./dist/*.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push "./artefacts/*.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
   
   publish-github:
     name: Publish GitHub Package
