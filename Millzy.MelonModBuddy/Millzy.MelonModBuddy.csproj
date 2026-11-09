@@ -13,6 +13,7 @@
         <FileVersion>1.0.0</FileVersion>
         <Configurations>Debug;Release</Configurations>
         <Platforms>AnyCPU;Android</Platforms>
+        <Description>MSBuild utilities for MelonLoader mod projects.</Description>
     </PropertyGroup>
     
     <PropertyGroup>
