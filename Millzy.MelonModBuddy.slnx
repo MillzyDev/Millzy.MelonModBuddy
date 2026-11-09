@@ -1,7 +1,3 @@
 <Solution>
-  <Configurations>
-    <Platform Name="Android" />
-    <Platform Name="Any CPU" />
-  </Configurations>
   <Project Path="Millzy.MelonModBuddy\Millzy.MelonModBuddy.csproj" />
 </Solution>
