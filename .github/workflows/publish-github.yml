@@ -5,9 +5,10 @@ on:
     types: [published]
     
   workflow_dispatch: 
-    version:
-      required: true
-      type: string
+    inputs: 
+      version:
+        required: true
+        type: string
         
 jobs:
   deploy:
