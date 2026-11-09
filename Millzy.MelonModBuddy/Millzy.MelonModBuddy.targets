@@ -38,6 +38,15 @@
         <CompilerVisibleProperty Include="MelonGameDeveloper" />
         <CompilerVisibleProperty Include="MelonGameName" />
     </ItemGroup>
+
+    <!-- Set default property values -->
+    <PropertyGroup>
+        <ModVersion Condition="'$(ModVersion)' == ''">0.1.0</ModVersion>
+        <ModId Condition="'$(ModAuthor)' == ''">$(ModAuthor).$(ModName)</ModId>
+        <ModIcon Condition="'$(ModIcon)' == ''">$(SolutionDir)\icon.png</ModIcon>
+        <ModReadme Condition="'$(ModReadme)' == ''">$(SolutionDir)\README.md</ModReadme>
+        <ModChangelog Condition="'$(ModChangelog)' == ''">$(SolutionDir)\CHANGELOG.md</ModChangelog>
+    </PropertyGroup>
     
     <!-- Utility task to check file bytes -->
     <UsingTask TaskName="CheckForBOM"
@@ -89,15 +98,6 @@
         </Task>
     </UsingTask>
     
-    <!-- Set default property values -->
-    <PropertyGroup>
-        <ModVersion Condition="'$(ModVersion)' == ''">0.1.0</ModVersion>
-        <ModId Condition="'$(ModAuthor)' == ''">$(ModAuthor).$(ModName)</ModId>
-        <ModIcon Condition="'$(ModIcon)' == ''">$(SolutionDir)\icon.png</ModIcon>
-        <ModReadme Condition="'$(ModReadme)' == ''">$(SolutionDir)\README.md</ModReadme>
-        <ModChangelog Condition="'$(ModChangelog)' == ''">$(SolutionDir)\CHANGELOG.md</ModChangelog>
-    </PropertyGroup>
-    
     <Target Name="ProjectSetupRecommendations"
             AfterTargets="BeforeBuild" >
         <Warning Text="CopyToModsFolder is enabled but doesn't appear to be defined in a user file. It is recommended you define it in $(MSBuildProjectFullPath).user."
@@ -105,7 +105,8 @@
     </Target>
     
     <Target Name="ValidateThunderstorePackage"
-            AfterTargets="BeforeBuild" >
+            AfterTargets="BeforeBuild"
+            Condition="'$(ThunderstorePackage)' == 'true'">
 
         <Error Text="ModName can only contain characters a-z, A-Z, 0-9, and _"
                Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(ModName)', '^[a-zA-Z0-9_]+%24'))" />
@@ -118,6 +119,10 @@
         <Error Text="ModDescription can be no more than 250 characters long."
                Condition="$(ModDescription.Length) &gt; 250" />
 
+        <Error Text="README.md file does not exist. Create one in $(SolutionDir) or update ModReadme"
+               Condition="Exists('$(ModReadme)')" />
+        <Error Text="icon.png file does not exist. Create one in $(SolutionDir) or update ModIcon"
+               Condition="Exists('$(ModIcon)')" />
 
         <CheckForBOM Filepath="$(ModReadme)">
             <Output TaskParameter="Result" PropertyName="ModReadmeHasBom" />
