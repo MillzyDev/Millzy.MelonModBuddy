@@ -39,4 +39,4 @@ jobs:
           user: MillzyDev
           
       - name: Dotnet NuGet Push
-        run: dotnet nuget push "./dist/*.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push "./dist/*.nupkg" --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
