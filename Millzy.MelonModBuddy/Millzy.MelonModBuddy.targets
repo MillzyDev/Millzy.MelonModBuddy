@@ -82,12 +82,27 @@
         <ModChangelog Condition="'$(ModChangelog)' == ''">$(SolutionDir)\CHANGELOG.md</ModChangelog>
     </PropertyGroup>
     
-    <Target Name="ValidateThunderstoreFiles"
+    <Target Name="ProjectSetupRecommendations"
+            AfterTargets="BeforeBuild" >
+        <Warning Text="CopyToModsFolder is enabled but doesn't appear to be defined in a user file. It is recommended you define it in $(MSBuildProjectFullPath).user."
+                 Condition="'$(CopyToModsFolder)' == 'true' And !Exists('$(MSBuildProjectFullPath).user')" />
+    </Target>
+    
+    <Target Name="ValidateThunderstorePackage"
             AfterTargets="BeforeBuild" >
 
         <Error Text="ModName can only contain characters a-z, A-Z, 0-9, and _"
                Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(ModName)', '^[a-zA-Z0-9_]+%24'))" />
+        <Error Text="ModName can be no more than 128 characters long." 
+               Condition="$(ModName.Length) &gt; 128" />
         
+        <Error Text="ModVersion must be formatted as Major.Minor.Patch"
+               Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(ModVersion)', '^[0-9]+\.[0-9]+\.[0-9]+%24'))" />
+        
+        <Error Text="ModDescription can be no more than 250 characters long."
+               Condition="$(ModDescription.Length) &gt; 250" />
+
+
         <CheckForBOM Filepath="$(ModReadme)">
             <Output TaskParameter="Result" PropertyName="ModReadmeHasBom" />
         </CheckForBOM>
@@ -107,7 +122,7 @@
             AfterTargets="PostBuildEvent"
             Condition="'$(CopyToModsFolder)' == 'true'">
         
-        <Error Text="Provided game install location doesn't exist. Make sure GamePath is properly defined."
+        <Error Text="Provided game install ($(GamePath)) location doesn't exist. Make sure GamePath is properly defined."
                  Condition="!Exists('$(GamePath)') or '$(GamePath)' == ''" />
 
         <PropertyGroup>
@@ -137,6 +152,10 @@
     <Target Name="AdbPushToModsFolder"
             AfterTargets="PostBuildEvent"
             Condition="'$(AdbPushToModsFolder)' == 'true'">
+        <Error Text="AdbPushToModsFolder is enabled but AndroidGamePackageName is not defined."
+               Condition="'$(AndroidGamePackageName)' == ''" />
+               
+        
         <PropertyGroup>
             <AndroidDestination>/sdcard/MelonLoader/$(AndroidGamePackageName)/Mods</AndroidDestination>
         </PropertyGroup>
