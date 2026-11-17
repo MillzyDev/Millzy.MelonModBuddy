@@ -19,6 +19,14 @@
         <ModDependencies>
             <Visible>false</Visible>
         </ModDependencies>
+        
+        <ModUserLib>
+            <Visible>false</Visible>
+        </ModUserLib>
+        
+        <ModUserData>
+            <Visible>false</Visible>
+        </ModUserData>
     </ItemDefinitionGroup>
     
     <ItemGroup>
@@ -195,6 +203,8 @@
         <PropertyGroup>
             <ThunderstorePath>$(OutputPath)\Thunderstore</ThunderstorePath>
             <ThunderstoreModsPath>$(ThunderstorePath)\Mods</ThunderstoreModsPath>
+            <ThunderstoreUserDataPath>$(ThunderstorePath)\UserData</ThunderstoreUserDataPath>
+            <ThunderstoreUserLibsPath>$(ThunderstorePath)\UserLibs</ThunderstoreUserLibsPath>
         </PropertyGroup>
         
         <!-- Get list of files to include in the ZIP -->
@@ -225,6 +235,20 @@
               DestinationFiles="@(ThunderstoreFilesDestination)" />
         <Copy SourceFiles="@(ModFiles)" 
               DestinationFolder="$(ThunderstoreModsPath)" />
+        
+        <!-- Copy UserLibs -->
+        <MakeDir Directories="$(ThunderstoreUserLibsPath)"
+                 Condition="'@(ModUserLibs)' != ''" />
+        <Copy SourceFiles="@(ModUserLibs)"
+              DestinationFolder="$(ThunderstoreUserLibsPath)"
+              Condition="'@(ModUserLibs)' != ''" />
+        
+        <!-- Copy UserData -->
+        <MakeDir Directories="$(ThunderstoreUserDataPath)"
+                 Condition="'@(ModUserData)' != ''" />
+        <Copy SourceFiles="@(ModUserData)"
+              DestinationFolder="$(ThunderstoreUserDataPath)"
+              Condition="'@(ModUserData)' != ''" />
         
         <Message Importance="high" Text="Creating manifest.json" />
         
